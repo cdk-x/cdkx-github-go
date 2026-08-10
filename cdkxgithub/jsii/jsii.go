@@ -5,17 +5,24 @@
 package jsii
 
 import (
-	_      "embed"
+	_          "embed"
 
-	_jsii_ "github.com/aws/jsii-runtime-go/runtime"
+	_jsii_     "github.com/aws/jsii-runtime-go/runtime"
+
+	constructs "github.com/aws/constructs-go/constructs/v10/jsii"
+	cdkxcore   "github.com/cdk-x/cdkx-core-go/cdkxcore/jsii"
 )
 
-//go:embed cdk-x-github-1.0.0-alpha.0.tgz
+//go:embed cdk-x-github-1.0.0-alpha.1.tgz
 var tarball []byte
 
 // Initialize loads the necessary packages in the @jsii/kernel to support the enclosing module.
 // The implementation is idempotent (and hence safe to be called over and over).
 func Initialize() {
+	// Ensure all dependencies are initialized
+	cdkxcore.Initialize()
+	constructs.Initialize()
+
 	// Load this library into the kernel
-	_jsii_.Load("@cdk-x/github", "1.0.0-alpha.0", tarball)
+	_jsii_.Load("@cdk-x/github", "1.0.0-alpha.1", tarball)
 }
